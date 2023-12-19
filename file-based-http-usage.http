@@ -1,0 +1,6 @@
+POST http://localhost:8000/api/save_file/key=test1&value=content&ttl=0
+Content-Type: application/json
+
+###
+
+GET http://localhost:8000/api/get_file/test1
