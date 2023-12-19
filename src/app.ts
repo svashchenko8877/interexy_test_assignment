@@ -1,10 +1,7 @@
 import http from 'node:http';
 import {FileCache} from "./file-based-cached";
+import {Routing, Types} from "./models";
 
-
-interface Routing {
-    [key: string]: string  | (() => any) | ((req: http.IncomingMessage, res: http.ServerResponse) => any);
-}
 
 const PORT = 8000;
 let fileCache: FileCache;
@@ -13,8 +10,8 @@ const routing: Routing = {
     '/': 'welcome to homepage',
     '/api/get_file/*': (client, params: any) => {
         const name = params[0];
-        const file =  fileCache.get(name);
-        return JSON.stringify({ file });
+        const file = fileCache.get(name);
+        return JSON.stringify({file});
     },
     '/api/save_file/*': (client: http.IncomingMessage, params: any) => {
         const url = new URLSearchParams(params[0]);
@@ -24,12 +21,9 @@ const routing: Routing = {
         fileCache.set(key, value, +ttl)
         return JSON.stringify(`${key} saved`);
     }
-};
-type Serializer = (data: any, req: http.IncomingMessage, res: http.ServerResponse) => string;
+}
 
-interface Types {
-     [key: string]: Serializer;
- }
+
 const types: Types  = {
     object: (o) => JSON.stringify(o),
     string: (s) => s,
