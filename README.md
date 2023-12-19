@@ -1,20 +1,3 @@
-## Introduction
-
-This repo is a **barebone minimalistic** starter-kit for TypeScript-based ExpressJS (https://expressjs.com/) app.
-
-## Simplicity
-
-In order to build and run the app, you have to execute only 2 NPM script commands.
-
-## Dependencies
-
-* ExpressJS
-* ExpressJS Middlewares
-    * Compression - https://github.com/expressjs/compression
-    * Helmet - https://helmetjs.github.io/
-* TypeScript
-* NPM (or) Yarn
-
 ## Install, Build, Run
 
 Install node package dependencies:
@@ -25,16 +8,26 @@ Build:
 
 `$ npm run build`
 
-Run ExpressJS server:
+## Description about solution
 
-`$ npm start`
 
-## Recommendation
+### 1. Implement a file-based caching system
 
-Keep all TypeScript source files in the `src` folder.
+File `file-based-cached` represents the logic
 
-## Future Goals
+USAGE:
 
-* Add more sample code like Routes, Controllers, and Views
-* Add Webpack
-* Add unit-test sample code for Jest
+```
+const fileCache = new FileCache('./');
+fileCache.set('long_term_file', '12345', 10000)
+fileCache.set('test', '12345', 0)
+fileCache.get('test')
+```
+
+### 2. Create an HTTP Proxy Server
+
+This part is implemented only using native `node:http` module. 
+
+### 3. Create an HTTP Proxy Server
+
+As this repository doesn't contain express dependency, solution moved to https://github.com/svashchenko8877/optimise_RESTful_API

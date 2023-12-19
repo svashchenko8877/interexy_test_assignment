@@ -46,9 +46,3 @@ export class FileCache {
         return path.join(this.cacheDir, `${key}.json`);
     }
 }
-
-// ** USAGE ** //
-// const fileCache = new FileCache('./');
-// fileCache.set('long_term_file', '12345', 10000)
-// fileCache.set('test', '12345', 0)
-// fileCache.get('test') // instant delete
